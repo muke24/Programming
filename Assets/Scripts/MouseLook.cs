@@ -63,7 +63,7 @@ public class MouseLook : MonoBehaviour
             {
                 //transform the rotation on our game objects Y by our Mouse input Mouse X times X sensitivity
                 //x                y                          z
-                transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+                transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX/4, 0);
             }
 
 
@@ -73,7 +73,7 @@ public class MouseLook : MonoBehaviour
             else
             {
                 //our rotation Y is pulse equals  our mouse input for Mouse Y times Y sensitivity
-                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                rotationY += Input.GetAxis("Mouse Y") * sensitivityY/4;
                 //the rotation Y is clamped using Mathf and we are clamping the y rotation to the Y min and Y max
                 rotationY = Mathf.Clamp(rotationY, minY, maxY);
                 //transform our local position to the nex vector3 rotaion - y rotaion on the x axis and local euler angle Y on the y axis

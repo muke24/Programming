@@ -36,7 +36,7 @@ public class Interact : MonoBehaviour
                 if (hitInfo.collider.CompareTag("NPC"))
                 {
 
-                    Dialogue dlg = hitInfo.transform.GetComponent<Dialogue>();
+                    Dialog dlg = hitInfo.transform.GetComponent<Dialog>();
                     if (dlg != null)
                     {
                         dlg.showDlg = true;
