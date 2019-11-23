@@ -13,22 +13,26 @@ public class Movement : MonoBehaviour
     [Header("Character Move Direction")]
     //vector3 called moveDirection
     public Vector3 moveDirection;
+
     //we will use this to apply movement in worldspace
     //private CharacterController (https://docs.unity3d.com/ScriptReference/CharacterController.html) charC
-    private CharacterController _charC;
-    [Header("Character Variables")]
-    //public float variables jumpSpeed, speed, gravity
+    private CharacterController charCtrl;
+    
+	[Header("Character Variables")]
+    
+	//public float variables jumpSpeed, speed, gravity
     public float jumpSpeed; 
     public float speed, gravity;
     public static bool canMove = true;
-    #endregion
+    
+	#endregion
     #region Start
     private void Start()
     {
         canMove = true;
 
         //charc is on this game object we need to get the character controller that is attached to it
-        _charC = this.GetComponent<CharacterController>();
+        charCtrl = this.GetComponent<CharacterController>();
     }
 
     #endregion
@@ -38,7 +42,7 @@ public class Movement : MonoBehaviour
         if (canMove)
         {
             //if our character is grounded
-            if (_charC.isGrounded)      //we are able to move in game scene meaning
+            if (charCtrl.isGrounded)      //we are able to move in game scene meaning
             {
                 //moveDir has the value of Input.Get Axis.. Horizontal, 0, Vertical
                 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -59,7 +63,7 @@ public class Movement : MonoBehaviour
         //regardless of if we are grounded or not the players moveDir.y is always affected by gravity timesed my time.deltaTime to normalize it
         moveDirection.y -= gravity * Time.deltaTime;
         //we then tell the character Controller that it is moving in a direction timesed Time.deltaTime
-        _charC.Move(moveDirection * Time.deltaTime);
+        charCtrl.Move(moveDirection * Time.deltaTime);
     }
     #endregion
 }
